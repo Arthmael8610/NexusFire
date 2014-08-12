@@ -85,14 +85,12 @@ end
 function NexusFire:OnCombatLogDamage(tEventArgs)
   --enviroment damage is treated as if it were the player casting on him / her self.
   if tEventArgs.unitCaster then
-    Print("UnitCasterExists")
     if tEventArgs.unitCaster == tEventArgs.unitTarget then
       wndGTFO:GetInstance()
       wndGTFO:Show(false)
     end
   end
   --if tEventArgs.strCasterName then
-    Print("strCasterName Exists!")
     local AOETargetInfo = tEventArgs.splCallingSpell.GetAOETargetInfo()
     Event_FireGenericEvent("SendVarToRover", "AOETargetInfo", AOETargetInfo)
     if AOETargetInfo.eSelectionType ~= 0 then
