@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Addon Author="Arthmael" APIVersion="9" Name="NexusFire" Description="GTFO Remake">
     <Script Name="libs/GeminiAddon/GeminiAddon.lua"/>
+    <Script Name="libs/GeminiGUI/GeminiGUI.lua"/>
     <Script Name="NexusFire.lua"/>
     <Form Name="NexusFire.xml"/>
 </Addon>

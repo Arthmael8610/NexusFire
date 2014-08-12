@@ -20,12 +20,29 @@ local Event_FireGenericEvent, Print = Event_FireGenericEvent, Print
 -- NexusFire Module Definition
 -----------------------------------------------------------------------------------------------
 local NexusFire = Apollo.GetPackage("Gemini:Addon-1.1").tPackage:NewAddon("NexusFire", false)
-
+local GeminiGUI = Apollo.GetPackage("Gemini:GUI-1.0").tPackage
 -----------------------------------------------------------------------------------------------
 -- Locals
 -----------------------------------------------------------------------------------------------
+local wndGTFO
 
-
+-----------------------------------------------------------------------------------------------
+-- GeminiGUI
+-----------------------------------------------------------------------------------------------
+local tFloatingTextDef = {
+  AnchorOffsets = { 209, 81, 501, 140 },
+  RelativeToClient = true,
+  Font = "CRB_Header24_O",
+  Text = "GTFO!!!",
+  BGColor = "UI_WindowBGDefault",
+  TextColor = "UI_WindowTextDefault",
+  Name = "FloatingText",
+  Picture = true,
+  Moveable = true,
+  Overlapped = true,
+  DT_CENTER = true,
+  IgnoreMouse = true,
+}
 
 -----------------------------------------------------------------------------------------------
 -- Constants
@@ -36,12 +53,15 @@ local NexusFire = Apollo.GetPackage("Gemini:Addon-1.1").tPackage:NewAddon("Nexus
 -- Initialization
 -----------------------------------------------------------------------------------------------
 function NexusFire:OnInitialize()
-    -- load our form file
+
   --Event Handlers
   Apollo.RegisterEventHandler("CombatLogDamage", "OnCombatLogDamage")
 
   --Slash Commands
   Apollo.RegisterSlashCommand("nf", "OnNexusFireOn", self)
+
+  --Create Window
+  wndGTFO = GeminiGUI:Create(tFloatingTextDef)
 end
 
 -----------------------------------------------------------------------------------------------
@@ -49,6 +69,7 @@ end
 -----------------------------------------------------------------------------------------------
 function NexusFire:OnEnable()
   Print("Welcom To NexxusFire, I will Warn you When to GTFO, Just Incase you forget!")
+
 end
 
 -----------------------------------------------------------------------------------------------
@@ -61,6 +82,27 @@ function NexusFire:OnNexusFireOn()
 	self.wndMain:Invoke() -- show the window
 end
 
+function NexusFire:OnCombatLogDamage(tEventArgs)
+  --enviroment damage is treated as if it were the player casting on him / her self.
+  if tEventArgs.unitCaster then
+    Print("UnitCasterExists")
+    if tEventArgs.unitCaster == tEventArgs.unitTarget then
+      wndGTFO:GetInstance()
+      wndGTFO:Show(false)
+    end
+  end
+  --if tEventArgs.strCasterName then
+    Print("strCasterName Exists!")
+    local AOETargetInfo = tEventArgs.splCallingSpell.GetAOETargetInfo()
+    Event_FireGenericEvent("SendVarToRover", "AOETargetInfo", AOETargetInfo)
+    if AOETargetInfo.eSelectionType ~= 0 then
+      wndGTFO:GetInstance()
+    else
+      wndGTFO:Show(false)
+    end
+  --end
+
+end
 
 -----------------------------------------------------------------------------------------------
 -- NexusFireForm Functions
