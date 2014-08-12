@@ -1,0 +1,12 @@
+package-as: NexusFire
+enable-nolib-creation: no
+
+externals:
+  libs/GeminiAddon:
+    url: https://github.com/wildstarnasa/GeminiAddon.git
+  libs/GeminiDB:
+    url: https://github.com/wildstarnasa/GeminiDB.git
+
+ignore:
+  - README.md
+  - .gitignore
