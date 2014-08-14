@@ -207,14 +207,11 @@ end
 
 function NexusFire:OnCombatLogDamage(tEventArgs)
   local unitMe = GameLib.GetPlayerUnit()
-  -- Self inflicted damage doesn't count!
-  --if tEventArgs.unitCaster == unitMe then return end
   -- We're only tracking damage to ourselves
   if tEventArgs.unitTarget ~= unitMe then return end
 
   --enviroment damage is treated as if it were the player casting on him / her self.
   if tEventArgs.unitCaster then
-    Print("UnitCasterExists")
     if tEventArgs.unitCaster == tEventArgs.unitTarget then
       wndGTFO:Show(true)
       tTimer = ApolloTimer.Create(1, false, "OnTimer", self)
