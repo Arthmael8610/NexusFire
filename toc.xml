@@ -3,5 +3,5 @@
     <Script Name="libs/GeminiAddon/GeminiAddon.lua"/>
     <Script Name="libs/GeminiGUI/GeminiGUI.lua"/>
     <Script Name="NexusFire.lua"/>
-    <Form Name="NexusFire.xml"/>
+    <Form Name="Alert.xml"/>
 </Addon>
