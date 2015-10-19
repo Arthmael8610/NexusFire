@@ -1,0 +1,16 @@
+tag 0fca474c388cb4935531ee4219f95f0f1d137c30 Release_1.2
+Author:	Micheal Mueller <arthmael86@gmail.com>
+Date:	Wed Aug 13 22:24:43 2014 -0400
+
+commit 5fa516e1a4643de3f64bd9500959785ff4c7a5e5
+Author: Micheal Mueller <arthmael86@gmail.com>
+Date:   Wed Aug 13 22:24:29 2014 -0400
+
+    Updated toc for version increment, Removed Debug channel spam, thanks HossBrolo
+
+commit 444b0db511fcfa78bb4949f14055acc49666bf5f
+Author: Micheal Mueller <arthmael86@gmail.com>
+Date:   Wed Aug 13 22:22:39 2014 -0400
+
+    Removed Debug Spam, Thanks HossBrolo
+
