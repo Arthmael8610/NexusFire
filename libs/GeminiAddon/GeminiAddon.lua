@@ -15,7 +15,11 @@
 -- General flow should be:
 -- OnInitialize -> OnEnable 
 
+<<<<<<< HEAD
 local MAJOR, MINOR = "Gemini:Addon-1.1", 5
+=======
+local MAJOR, MINOR = "Gemini:Addon-1.1", 4
+>>>>>>> f5346693c2899389e254d7bc61732a0f32853fd7
 local APkg = Apollo.GetPackage(MAJOR)
 if APkg and (APkg.nVersion or 0) >= MINOR then
 	return -- no upgrade is needed
@@ -26,11 +30,15 @@ local GeminiAddon = APkg and APkg.tPackage or {}
 local error, type, tostring, select, pairs = error, type, tostring, select, pairs
 local setmetatable, getmetatable, xpcall = setmetatable, getmetatable, xpcall
 local assert, loadstring, rawset, next, unpack = assert, loadstring, rawset, next, unpack
+<<<<<<< HEAD
 local tconcat, tinsert, tremove, ostime = table.concat, table.insert, table.remove, os.time
 local strformat = string.format
 
 -- Wildstar APIs
 local Apollo, ApolloTimer, GameLib = Apollo, ApolloTimer, GameLib
+=======
+local tinsert, tremove, ostime = table.insert, table.remove, os.time
+>>>>>>> f5346693c2899389e254d7bc61732a0f32853fd7
 
 -- Package tables
 GeminiAddon.Addons          = GeminiAddon.Addons or {}          -- addon collection
@@ -70,7 +78,11 @@ local function CreateDispatcher(argCount)
 	
 	local ARGS = {}
 	for i = 1, argCount do ARGS[i] = "arg"..i end
+<<<<<<< HEAD
 	code = code:gsub("ARGS", tconcat(ARGS, ", "))
+=======
+	code = code:gsub("ARGS", table.concat(ARGS, ", "))
+>>>>>>> f5346693c2899389e254d7bc61732a0f32853fd7
 	return assert(loadstring(code, "safecall Dispatcher[" .. argCount .. "]"))(xpcall, fnErrorHandler)
 end
 
@@ -284,7 +296,10 @@ function GeminiAddon:EnableAddon(oAddon)
 		return false
 	end
 
+<<<<<<< HEAD
 	-- set status first before calling OnEnable. this allows for Disabling of the addon in OnEnable.
+=======
+>>>>>>> f5346693c2899389e254d7bc61732a0f32853fd7
 	self.AddonStatus[strAddonName] = true
 	safecall(oAddon.OnEnable, oAddon)
 
@@ -319,12 +334,18 @@ function GeminiAddon:DisableAddon(oAddon)
 		return false
 	end
 
+<<<<<<< HEAD
 	-- set statuses first before calling OnDisable, this allows for aborting the disable in OnDisable.
 	self.AddonStatus[strAddonName] = false
 
 	safecall( oAddon.OnDisable, oAddon )
 
 	if not self.AddonStatus[strAddonName] then
+=======
+	safecall( oAddon.OnDisable, oAddon )
+
+	if self.AddonStatus[strAddonName] then
+>>>>>>> f5346693c2899389e254d7bc61732a0f32853fd7
 		local tEmbeds = self.Embeds[oAddon]
 		for i = 1, #tEmbeds do
 			local APkg = Apollo.GetPackage(tEmbeds[i])
@@ -336,7 +357,11 @@ function GeminiAddon:DisableAddon(oAddon)
 
 		local tModules = oAddon.OrderedModules
 		for i = 1, #tModules do
+<<<<<<< HEAD
 			self:DisableAddon(tModules[i])
+=======
+			oAddon:DisableModule(tModules[i])
+>>>>>>> f5346693c2899389e254d7bc61732a0f32853fd7
 		end
 	end
 
@@ -439,7 +464,11 @@ function NewModule(self, strName, oPrototype, ...)
 		oNextParent = oCurrParent.Parent
 	end
 
+<<<<<<< HEAD
 	local oModule = NewAddonProto(oCurrParent:GetName(), strformat("%s_%s", self:GetName() or tostring(self), strName))
+=======
+	local oModule = NewAddonProto(oCurrParent:GetName(), string.format("%s_%s", self:GetName() or tostring(self), strName))
+>>>>>>> f5346693c2899389e254d7bc61732a0f32853fd7
 
 	oModule.IsModule = IsModuleTrue
 	oModule:SetEnabledState(self.DefaultModuleState)

@@ -186,7 +186,11 @@ end
 -- NexusFire OnEnable
 -----------------------------------------------------------------------------------------------
 function NexusFire:OnEnable()
+<<<<<<< HEAD
   Print("Hello my anme is NexusFire, I will warn you when to GTFO, Just Incase you forget!")
+=======
+  Print("Welcom To NexxusFire, I will Warn you When to GTFO, Just Incase you forget!")
+>>>>>>> f5346693c2899389e254d7bc61732a0f32853fd7
   --Create the instance of the window / options Window
   wndGTFO       = tGTFO:GetInstance(self)
   wndGTFOConfig = tGTFOConfig:GetInstance(self)
